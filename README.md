@@ -104,4 +104,5 @@ Once the server is running, you can access the Swagger API documentation:
 - Django
 - Django REST Framework
 - DeepL API for translations
+- Redis
 - PostgreSQL
