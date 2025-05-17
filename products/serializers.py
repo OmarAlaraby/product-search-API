@@ -1,6 +1,19 @@
 from rest_framework import serializers
 from .models import Product, ProductBrand, ProductCategory
 
+class ProductBrandSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductBrand
+        fields = ['id', 'name', 'description']
+        read_only_fields = ['id']
+    
+class ProductCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductCategory
+        fields = ['id', 'name', 'description']
+        read_only_fields = ['id']
+
+
 class ProductSerializer(serializers.ModelSerializer):
     brand = serializers.PrimaryKeyRelatedField(queryset=ProductBrand.objects.all())
     category = serializers.PrimaryKeyRelatedField(queryset=ProductCategory.objects.all())
@@ -9,7 +22,21 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name', 'description', 'brand', 'category']
         read_only_fields = ['id']
-        depth = 1
-        
         
     
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        
+        representation['brand'] = {
+            'id': instance.brand.id,
+            'name': instance.brand.name,
+            'description': instance.brand.description
+        }
+        
+        representation['category'] = {
+            'id': instance.category.id,
+            'name': instance.category.name,
+            'description': instance.category.description
+        }
+
+        return representation
