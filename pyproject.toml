@@ -12,6 +12,8 @@ djangorestframework = "^3.16.0"
 python-decouple = "^3.8"
 psycopg2 = "^2.9.10"
 drf-yasg = "^1.21.10"
+langdetect = "^1.0.9"
+deepl = "^1.22.0"
 
 
 [build-system]
