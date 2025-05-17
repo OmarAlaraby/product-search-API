@@ -6,11 +6,11 @@ from .filters import ProductFilter
 
 # utils
 from django.db.models import Q
-from decouple import config
-import deepl
 from functools import reduce
 import operator
-from langdetect import detect
+from decouple import config
+import deepl
+from .utils import correct_spelling
 
 # docs 
 from drf_yasg.utils import swagger_auto_schema
@@ -28,22 +28,22 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         if keyword:
             translator = deepl.Translator(config('DEEPL_API_KEY'))
-            translated = translator.translate_text(keyword, target_lang="EN-US")
+            translated = translator.translate_text(keyword, target_lang="EN-US").text
 
             print(keyword, translated)
+            print(translated, correct_spelling(translated))
+            candidates = correct_spelling(translated)
+            print(candidates)
             search_fields = [
-                "name", "description", "brand__name", "brand__description", "category__name",
-                "category__description", "ingredients", "allergens", "serving_size", "calories", "total_fat",
-                "saturated_fat", "trans_fat", "cholesterol", "sodium", "total_carbohydrates", "dietary_fiber",
-                "sugars", "added_sugars", "protein", "vitamin_d", "calcium", "iron", "potassium",
+                "name", "description", "brand__name", "category__name",
+                "ingredients", "allergens"
             ]
 
-            
-            queries = [
-                Q(**{f"{field}__icontains": keyword}) | Q(**{f"{field}__icontains": translated})
-                for field in search_fields
-            ]
-            
+            queries = []
+            for candidate in candidates:
+                for field in search_fields:
+                    queries.append(Q(**{f"{field}__icontains": candidate}))
+
             combined_query = reduce(operator.or_, queries)
             queryset = queryset.filter(combined_query).distinct()
 

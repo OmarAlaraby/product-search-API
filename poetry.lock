@@ -285,6 +285,17 @@ files = [
 ]
 
 [[package]]
+name = "pyspellchecker"
+version = "0.8.2"
+description = "Pure python spell checker based on work by Peter Norvig"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "pyspellchecker-0.8.2-py3-none-any.whl", hash = "sha256:4fee22e1859c5153c3bc3953ac3041bf07d4541520b7e01901e955062022290a"},
+    {file = "pyspellchecker-0.8.2.tar.gz", hash = "sha256:2b026be14a162ba810bdda8e5454c56e364f42d3b9e14aeff31706e5ebcdc78f"},
+]
+
+[[package]]
 name = "python-decouple"
 version = "3.8"
 description = "Strict separation of settings from code."
@@ -457,4 +468,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "0e29a829333a03e2e807a2d382abdcfc3fa842c190edf2ed0bc6b48e3a7b6a52"
+content-hash = "82d43e21dcb94769943b77cef775d2ecba62eec8563c4f4615b86b09e618e05d"
