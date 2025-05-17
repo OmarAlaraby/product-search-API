@@ -14,6 +14,7 @@ psycopg2 = "^2.9.10"
 drf-yasg = "^1.21.10"
 langdetect = "^1.0.9"
 deepl = "^1.22.0"
+django-filter = "^25.1"
 
 
 [build-system]

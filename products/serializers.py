@@ -20,10 +20,17 @@ class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'brand', 'category']
+        fields = [
+            'id', 'name', 'description', 'brand', 'category', 'created_at',
+            'serving_size', 'servings_per_container', 'calories', 'total_fat',
+            'saturated_fat', 'trans_fat', 'cholesterol', 'sodium', 'total_carbohydrates',
+            'dietary_fiber', 'sugars', 'added_sugars', 'protein', 'vitamin_d',
+            'calcium', 'iron', 'potassium', 'ingredients', 'allergens',
+            'is_vegan', 'is_gluten_free', 'is_organic'
+        ]
         read_only_fields = ['id']
-        
-    
+
+
     def to_representation(self, instance):
         representation = super().to_representation(instance)
         
