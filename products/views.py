@@ -29,13 +29,14 @@ class ProductViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = super().get_queryset()
         keyword = self.request.query_params.get('search', None)
-
+        
         if keyword:
             translator = deepl.Translator(config('DEEPL_API_KEY'))
             translated = translator.translate_text(keyword, target_lang="EN-US").text
 
-            # print(keyword, translated)
-            # print(translated, correct_spelling(translated))
+            print(keyword, translated)
+            print(translated, correct_spelling(translated))
+            
             candidates = correct_spelling(translated)
             # print(candidates)
             search_fields = [
