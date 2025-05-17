@@ -16,6 +16,7 @@ langdetect = "^1.0.9"
 deepl = "^1.22.0"
 django-filter = "^25.1"
 pyspellchecker = "^0.8.2"
+django-redis = "^5.4.0"
 
 
 [build-system]
