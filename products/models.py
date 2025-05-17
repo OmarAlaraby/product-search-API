@@ -14,6 +14,7 @@ class Product(models.Model):
     description = models.TextField()
     brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
