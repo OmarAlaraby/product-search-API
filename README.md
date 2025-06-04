@@ -2,8 +2,6 @@
 
 ## Project Overview
 
-[![Project Demo Video](https://img.shields.io/badge/Watch-Demo_Video-blue?style=for-the-badge&logo=googledrive)](https://drive.google.com/file/d/1y4wiK_4s53GdPQ2w3l5J86905Pl61TSP/view?usp=sharing)
-
 This API provides advanced product search capabilities with the following features:
 - Multi-language search support through DeepL translation
 - Automatic spelling correction for search terms
